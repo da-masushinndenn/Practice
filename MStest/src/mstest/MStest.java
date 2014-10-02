@@ -20,6 +20,7 @@ public class MStest {
         System.out.println("夜の合計は" +100 * 5 + "円です");
         System.out.println("昼と夜の合計は" + ((100 * 5) + (200 * 3)) + "円です");
         
+        
     }
     
 }
