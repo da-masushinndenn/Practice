@@ -21,22 +21,22 @@ public class Masu {
         //                             896 * 1024);
         
         //変数a b c を宣言。同時に初期化
-        int a = 0;
-        int b = 0;
-        int c = 0;
+        //int a = 0;
+        //int b = 0;
+        //int c = 0;
         
         //昼の合計を計算して変数aに代入
-        a = 100 * 5;
+        int a = 100 * 5;
         //昼の合計を表示
         System.out.println("昼の合計は" + a + "円です");
         
         //夜の合計を計算して変数bに代入
-        b = 200 * 3;
+        int b = 200 * 3;
         //夜の合計を表示
         System.out.println("夜の合計は" + b + "円です");
         
         //昼(変数a)と夜(変数b)の合計を計算して変数cに代入
-        c = a + b;
+        int c = a + b;
         //昼と夜の合計を表示
         System.out.println("昼と夜の合計は" + c + "円です");
         
