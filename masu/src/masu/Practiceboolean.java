@@ -18,10 +18,10 @@ public class Practiceboolean {
         // TODO code application logic here
         
         //変数 itemDarkStoneFlgをboolean型で宣言。falseに初期化
-        boolean itemDarkStoneFlg = false;//アイテム取得フラグ：闇の魔石
+        boolean itemDarkStoneFlg = true;//アイテム取得フラグ：闇の魔石
         
         //項目表示
-        System.out.println("《現在のもちもの》");
+        System.out.println("《現在の持ち物》");
         
         //アイテム取得チェック：闇の魔石を持っているか
         if(itemDarkStoneFlg == true){
