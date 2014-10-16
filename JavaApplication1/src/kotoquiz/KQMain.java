@@ -72,15 +72,7 @@ public class KQMain {
                     break;
             }
             System.out.println("答え＞");
-            
-            //問題を勧める
-            nowQuizNum +=1;
-            
-            //最大数以上なら
-            if(nowQuizNum >= QUIZ_MAX){
-                loopFlg = false; //ゲームを終了する
-            }
-            
+                    
             ///////////////////////////////////////
             //キー入力処理
             int tmpInputNum = 0; //入力番号初期化
@@ -108,6 +100,71 @@ public class KQMain {
             System.out.println("");
             System.out.println("#############################################");
             System.out.println("");
+            
+            //解答をチェックする
+            switch(nowQuizNum){
+                case 0:
+                    //正解番号チェック
+                    if(inputNum == 3){
+                        System.out.println("やったね！正解");
+                        correctTotal += 1; //正解数加算
+                    }else{
+                        System.out.println("残念！不正解");
+                    }
+                
+                    break;
+                case 1:
+                    //正解番号チェック
+                    if(inputNum == 1){
+                        System.out.println("やったね！正解");
+                        correctTotal += 1; //正解数加算
+                    }else{
+                        System.out.println("残念！不正解");
+                    }
+                    
+                    break;
+                case 2:
+                    //正解番号チェック
+                    if(inputNum == 3){
+                        System.out.println("やったね！正解");
+                        correctTotal += 1; //正解数加算
+                    }else{
+                        System.out.println("残念！不正解");
+                    }
+                
+                    break;
+            }
+            System.out.println("");
+            System.out.println("-------------------------------------------");
+            System.out.println("《 １を入力してEnterキーを押して下さい 》");
+            
+            //問題を勧める
+            nowQuizNum +=1;
+            
+            //最大数以上なら
+            if(nowQuizNum >= QUIZ_MAX){
+                loopFlg = false; //ゲームを終了する
+            }
+            
+            //キー入力処理
+            tmpInputNum = 0; //入力番号初期化
+            try{
+                //初期化処理
+                final int IMPUT_MAX = 3; //最大入力値
+                //キー入力読み込み処理（int型）
+                java.util.Scanner sc = new java.util.Scanner(System.in);
+                int inputInt = sc.nextInt();
+                //入力値チェックと入力番号への代入
+                if(inputInt > 0 && inputInt <= IMPUT_MAX){
+                    tmpInputNum = inputInt;
+                }else{
+                    System.out.println("※ コマンドは" + IMPUT_MAX +"以下で入力して下さい ※ ");
+                }
+            }catch (Exception e){
+                System.out.println("※ 数字以外は入力しないで下さい ※");
+            }
+            //キー入力処理　ここまで
+            
         }
         
         //結果表示
