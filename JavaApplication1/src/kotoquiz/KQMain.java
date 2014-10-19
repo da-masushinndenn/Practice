@@ -20,6 +20,9 @@ public class KQMain {
         //*****************************************
         //定数
         //*****************************************
+        //入力・表示処理モード
+        final int EXEC_MODE_QUIZ = 1; //問題処理モード
+        final int EXEC_MODE_CHECK = 1; //回答処理モード
         final int QUIZ_MAX = 3; //問題数
         
         //*****************************************
@@ -27,6 +30,7 @@ public class KQMain {
         //*****************************************
         boolean loopFlg = true;//ループフラグ
         int inputNum = 0; //入力番号
+        int execMode = EXEC_MODE_QUIZ; //処理モード（問題処理モードで開始）
         
         int nowQuizNum = 0; //現在出題番号
         int correctTotal = 0; //正解数
@@ -36,6 +40,9 @@ public class KQMain {
         while(loopFlg){
             ///////////////////////////////////////
             //実行と描画処理
+            
+            //問題処理モード
+            if(execMode == EXEC_MODE_QUIZ){
             
             //テスト用：見出し表示
             System.out.println("*********** ことくいず　***********");
@@ -67,40 +74,18 @@ public class KQMain {
                     System.out.println("-----------------------------------------");
                     System.out.println("1：(a >= 4 || a < 10) && a < 40)");
                     System.out.println("2：(a >= 4 || a <= 10) || a < 40)");
-                    System.out.println("1：(a >= 4 && a <= 10) || a < 40)");
+                    System.out.println("3：(a >= 4 && a <= 10) || a < 40)");
                     
                     break;
             }
             System.out.println("答え＞");
-                    
-            ///////////////////////////////////////
-            //キー入力処理
-            int tmpInputNum = 0; //入力番号初期化
-            try{
-                //初期化処理
-                final int IMPUT_MAX = 3; //最大入力値
-                //キー入力読み込み処理（int型）
-                java.util.Scanner sc = new java.util.Scanner(System.in);
-                int inputInt = sc.nextInt();
-                //入力値チェックと入力番号への代入
-                if(inputInt > 0 && inputInt <= IMPUT_MAX){
-                    tmpInputNum = inputInt;
-                }else{
-                    System.out.println("※ コマンドは" + IMPUT_MAX +"以下で入力して下さい ※ ");
-                }
-            }catch (Exception e){
-                System.out.println("※ 数字以外は入力しないで下さい ※");
-            }
-            //キー入力処理　ここまで
             
-            //入力番号を受け取る
-            inputNum = tmpInputNum;
+            //解答処理モードへ変更
+            execMode = EXEC_MODE_CHECK;
             
-            //表示終了の区切り
-            System.out.println("");
-            System.out.println("#############################################");
-            System.out.println("");
-            
+            //解答処理モード
+            }else if(execMode == EXEC_MODE_CHECK){
+
             //解答をチェックする
             switch(nowQuizNum){
                 case 0:
@@ -146,8 +131,12 @@ public class KQMain {
                 loopFlg = false; //ゲームを終了する
             }
             
+            //問題処理モードへ変更
+            execMode = EXEC_MODE_QUIZ;
+            }
+            
             //キー入力処理
-            tmpInputNum = 0; //入力番号初期化
+            int tmpInputNum = 0; //入力番号初期化
             try{
                 //初期化処理
                 final int IMPUT_MAX = 3; //最大入力値
