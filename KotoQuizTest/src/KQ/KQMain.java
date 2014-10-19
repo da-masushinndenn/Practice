@@ -91,8 +91,7 @@ public class KQMain {
                     case 0:
                         //正解番号チェック
                         if (inputNum == 3) {
-                            System.out.println("やったね！正解");
-                            correctTotal += 1; //正解数加算
+                            correctTotal = printCorrect(correctTotal); //正解処理
                         } else {
                             System.out.println("残念！不正解");
                         }
@@ -101,8 +100,7 @@ public class KQMain {
                     case 1:
                         //正解番号チェック
                         if (inputNum == 1) {
-                            System.out.println("やったね！正解");
-                            correctTotal += 1; //正解数加算
+                            correctTotal = printCorrect(correctTotal); //正解処理
                         } else {
                             System.out.println("残念！不正解");
                         }
@@ -111,8 +109,7 @@ public class KQMain {
                     case 2:
                         //正解番号チェック
                         if (inputNum == 3) {
-                            System.out.println("やったね！正解");
-                            correctTotal += 1; //正解数加算
+                            correctTotal = printCorrect(correctTotal); //正解処理
                         } else {
                             System.out.println("残念！不正解");
                         }
@@ -172,6 +169,16 @@ public class KQMain {
         System.out.println("");
         System.out.println("おしまい");
 
+    }
+    
+    //関数：正解処理関数
+    private static int printCorrect(int seikaiGoukei){
+        
+        System.out.println("やったね！正解");
+        seikaiGoukei += 1; //正解数加算
+        
+        //結果を返す
+        return  seikaiGoukei;
     }
 
 }
