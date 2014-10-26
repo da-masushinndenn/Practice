@@ -126,7 +126,6 @@ public class KQMain {
     
     /**
      * 解答処理モード
-     * @return 
      */
     private static void exeModeCheck(){
         switch (nowQuizNum) {
