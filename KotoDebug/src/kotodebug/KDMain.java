@@ -26,7 +26,7 @@ public class KDMain {
         System.out.println("100を" + a + "で割ると" + ( 100/a ) + "です");
         
         a -= 1;
-        System.out.println("100を" + a + "で割ると" + (100/a) + "です");
+        System.out.println("100を" + a + "で割ると" + ( 100/a ) + "です");
         
         //********************
         //論理エラーテスト
