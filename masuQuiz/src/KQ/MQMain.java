@@ -149,24 +149,23 @@ public class MQMain {
 
                 break;
             case 2:
-                System.out.println("変数 a が「４位上でかつ１０以下」か「４０未満」");
-                System.out.println("正しい条件式はどれ？");
+                System.out.println("ムイネ～ムイネ～なサ～ア～でシ～コ～もタ～イ～。");
+                System.out.println("一番適切な意味を選べ");
                 System.out.println("");
                 System.out.println("-----------------------------------------");
-                System.out.println("1：(a >= 4 || a < 10) && a < 40)");
-                System.out.println("2：(a >= 4 || a <= 10) || a < 40)");
-                System.out.println("3：(a >= 4 && a <= 10) || a < 40)");
+                System.out.println("1：とっても眠い。さあ、一日がんばろう！");
+                System.out.println("2：ムイネ～！（挨拶）シコっと鯛が釣れちゃうよ！");
+                System.out.println("3：寝起きがとっても悪い。腰も痛い。");
 
                 break;
             case 3:
-                System.out.println("ことが一番好きな場所はどこ？");
+                System.out.println("トゥートゥートゥトゥートゥトゥー　トゥトゥトゥトゥ～？");
                 System.out.println("");
                 System.out.println("-----------------------------------------");
-                System.out.println("1:動物園 2:水族館 3:遊園地");
+                System.out.println("1：トゥルルルールトゥル～");
+                System.out.println("2：ッピポッ　ピポ～リロ～リロッ");
+                System.out.println("3：チャラララ～ン　チャラ　チャラ～ン");
                 
-                break;
-            default:
-                //ソレ以外の番号が来た時の対応をする。
                 break;
         }
         System.out.println("答え＞");

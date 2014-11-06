@@ -121,6 +121,11 @@ public class KQMain {
                 System.out.println("");
                 System.out.println("-----------------------------------------");
                 System.out.println("1:動物園 2:水族館 3:遊園地");
+                
+                break;
+            default:
+                //ソレ以外の番号が来た時の対応をする。
+                break;
         }
         System.out.println("答え＞");
 
@@ -152,6 +157,8 @@ public class KQMain {
             case 3:
                 //正解番号チェック
                 correctTotal = checkAnswerData(2, inputNum, correctTotal);
+                
+                break;
                 
         }
         System.out.println("");
