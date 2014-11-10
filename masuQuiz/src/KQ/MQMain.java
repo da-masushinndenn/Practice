@@ -202,9 +202,6 @@ public class MQMain {
                 break;
                 
         }
-        System.out.println("");
-        System.out.println("-------------------------------------------");
-        System.out.println("《 １を入力してEnterキーを押して下さい 》");
 
         //問題を勧める
         nowQuizNum += 1;
