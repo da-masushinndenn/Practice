@@ -108,11 +108,10 @@ public class GameView extends View {
 		canvas.drawBitmap(bgImage, 0, 0, null);
 		
 		//アイテムをスクロールさせるための処理
-		
 		//アイテムをenergyVXごとに移動させる
 		energyX += energyVX;
-		//画面から消えた、またはプレイヤーにあたっていたら
-		if(energyX < 0 || hitCheck()){
+		//画面から消えたら
+		if(energyX < 0){
 			//また、右（X座標がCanvas+20の位置）から
 			energyX = canvas.getWidth() + 20;
 			//高さ（Y座標）は画面上半分のランダムな位置から表示されるようにする
@@ -163,20 +162,6 @@ public class GameView extends View {
 			}
 			//呼び出し元に戻る
 			return true;
-		}
-		
-		//衝突判定メソッド
-		public boolean hitCheck(){
-			if(playerX < energyX &&
-			  (playerX + player[0].getWidth()) > energyX &&
-			  playerY < energyY && 
-			  (playerY + player[0].getHeight()) > energyY){
-			//アイテムの中心座標が、アイテムの短形領域なら「true」を返す
-			return true;
-			}else{
-			//そうでなければ「false」を返す
-			return false;
-			}
 		}
 	
 
