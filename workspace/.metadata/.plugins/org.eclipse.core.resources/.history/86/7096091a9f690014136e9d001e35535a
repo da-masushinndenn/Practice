@@ -88,14 +88,6 @@ public class GameView extends View {
 	energyPaint.setColor(Color.RED);
 	//アンチエイリアスを有効にする
 	energyPaint.setAntiAlias(true);
-	
-	//スコアの描画色を設定
-	scorePaint.setColor(Color.YELLOW);
-	//スコアのテキストサイズを設定
-	scorePaint.setTextSize(32);
-	//アンチエイリアスを有効にする
-	scorePaint.setAntiAlias(true);
-	
 	}
 	@SuppressLint("DrawAllocarion")
 	
@@ -165,9 +157,6 @@ public class GameView extends View {
 		//画面（Canvas)にプレイヤー画像を順番に描画
 		if(frameIndex > 4) frameIndex = 0;
 		canvas.drawBitmap(player[frameIndex++], playerX, playerY, null);
-		
-		//スコアを描画
-		canvas.drawText(scoreLabel + score, 10, 50, scorePaint);
 	}	
 		//タッチイベント時に実行されるメソッド
 		public boolean onTouchEvent(MotionEvent me){
@@ -186,9 +175,6 @@ public class GameView extends View {
 			  (playerX + player[0].getWidth()) > energyX &&
 			  playerY < energyY && 
 			  (playerY + player[0].getHeight()) > energyY){
-			
-			//スコアを加算
-			score += 10;
 			//アイテムの中心座標が、アイテムの短形領域なら「true」を返す
 			return true;
 			}else{
