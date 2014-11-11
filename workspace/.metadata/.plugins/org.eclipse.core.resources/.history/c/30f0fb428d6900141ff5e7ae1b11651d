@@ -90,14 +90,8 @@ public class GameView extends View {
 		//全体が画面から消えたら
 		if(cloudX < -cloud.getWidth()){
 			//また右から
-			cloudX = canvas.getWidth();
-			//高さ（Y座標）は画面上半分のランダムな位置から
-			//雲が表示されるようにする
 			cloudY = (int)Math.floor(Math.random() * canvasCY);
 		}
-		
-		//画面（Canvas)に雲を描画
-		canvas.drawBitmap(cloud, cloudX, cloudY, null);
 		
 		
 		//プレイヤーの初期表示X座標を設定

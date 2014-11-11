@@ -96,9 +96,6 @@ public class GameView extends View {
 			cloudY = (int)Math.floor(Math.random() * canvasCY);
 		}
 		
-		//画面（Canvas)に雲を描画
-		canvas.drawBitmap(cloud, cloudX, cloudY, null);
-		
 		
 		//プレイヤーの初期表示X座標を設定
 		playerX = canvasCX - player[0].getWidth() / 2;

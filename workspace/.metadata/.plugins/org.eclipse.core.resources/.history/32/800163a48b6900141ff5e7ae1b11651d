@@ -26,21 +26,11 @@ public class GameView extends View {
 	private int playerX;
 	//プレイヤーのY座標
 	private int playerY;
-	
-	//雲の画像を格納する変数
-	private Bitmap cloud;
-	//雲のX座標
-	private int cloudX = 0;
-	//雲のY座標
-	private int cloudY = 0;
-	//雲の水平方向の移動量
-	private int cloudVX = -2;
-	
-	//画面（Canvas)中央のX座標
+	//画面（Canvas）中央のX座標
 	private int canvasCX;
 	//画面（Canvas)中央のY座標
 	private int canvasCY;
-		
+	
 	//コンストラクタ
 	public GameView(Context context) {
 		super(context);
@@ -50,9 +40,6 @@ public class GameView extends View {
 	
 	//背景画像「bg.png」をビットマップに変換して変数「bgImage」に入れる
 	bgImage = BitmapFactory.decodeResource(res, R.drawable.bg);
-	
-	//背景画像「cloud1.gif」をビットマップに変換して変数「cloud」に入れる
-	cloud = BitmapFactory.decodeResource(res, R.drawable.cloud1);
 	
 	//各プレイヤー画像をビットマップに変換して配列に入れる
 	player[0] = BitmapFactory.decodeResource(res, R.drawable.chopper1);
@@ -82,23 +69,6 @@ public class GameView extends View {
 	public void playScene(Canvas canvas){
 		//画面（Canvas)に背景画像を壁画
 		canvas.drawBitmap(bgImage, 0, 0, null);
-		
-		//雲をスクロール表示するための処理
-		
-		//雲の座標を「cloudVX」ずつ移動する
-		cloudX += cloudVX;
-		//全体が画面から消えたら
-		if(cloudX < -cloud.getWidth()){
-			//また右から
-			cloudX = canvas.getWidth();
-			//高さ（Y座標）は画面上半分のランダムな位置から
-			//雲が表示されるようにする
-			cloudY = (int)Math.floor(Math.random() * canvasCY);
-		}
-		
-		//画面（Canvas)に雲を描画
-		canvas.drawBitmap(cloud, cloudX, cloudY, null);
-		
 		
 		//プレイヤーの初期表示X座標を設定
 		playerX = canvasCX - player[0].getWidth() / 2;

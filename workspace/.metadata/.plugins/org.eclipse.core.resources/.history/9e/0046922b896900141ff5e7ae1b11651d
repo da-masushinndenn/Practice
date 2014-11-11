@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
 	//ハンドラの作成
 	private Handler handler = new Handler();
 	//ビューの再壁画間隔
-	private final static long MSEC = 30;
+	private final static long MSEC = 40;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
