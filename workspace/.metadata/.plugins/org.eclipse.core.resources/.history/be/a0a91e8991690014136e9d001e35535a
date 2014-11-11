@@ -9,8 +9,6 @@ import android.graphics.Canvas;
 import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.Paint;
 
 
 
@@ -36,22 +34,12 @@ public class GameView extends View {
 	//雲のY座標
 	private int cloudY = 0;
 	//雲の水平方向の移動量
-	private int cloudVX = -12;
+	private int cloudVX = -2;
 	
 	//画面（Canvas)中央のX座標
 	private int canvasCX;
 	//画面（Canvas)中央のY座標
 	private int canvasCY;
-	
-	//アイテムのX座標
-	private int energyX;
-	//アイテムのY座標
-	private int energyY;
-	//アイテムの水平方向の移動量
-	private int energyVX = -20;
-	
-	//アイテム描画用のペイントオブジェクトを作成
-	Paint energyPaint = new Paint();
 		
 	//コンストラクタ
 	public GameView(Context context) {
@@ -72,11 +60,6 @@ public class GameView extends View {
 	player[2] = BitmapFactory.decodeResource(res, R.drawable.chopper3);
 	player[3] = BitmapFactory.decodeResource(res, R.drawable.chopper4);
 	player[4] = BitmapFactory.decodeResource(res, R.drawable.chopper5);
-	
-	//アイテムの描画色を設定
-	energyPaint.setColor(Color.RED);
-	//アンチエイリアスを有効にする
-	energyPaint.setAntiAlias(true);
 	}
 	@SuppressLint("DrawAllocarion")
 	
@@ -97,22 +80,8 @@ public class GameView extends View {
 	
 	//「playScene」のメソッド
 	public void playScene(Canvas canvas){
-		//画面（Canvas)に背景画像を描画
+		//画面（Canvas)に背景画像を壁画
 		canvas.drawBitmap(bgImage, 0, 0, null);
-		
-		//アイテムをスクロールさせるための処理
-		//アイテムをenergyVXごとに移動させる
-		energyX += energyVX;
-		//画面から消えたら
-		if(energyX < 0){
-			//また、右（X座標がCanvas+20の位置）から
-			energyX = canvas.getWidth() + 20;
-			//高さ（Y座標）は画面上半分のランダムな位置から表示されるようにする
-			energyY = (int)Math.floor(Math.random() * canvasCY);
-		}
-		
-		//画面（Canvas)にアイテムを描画
-		canvas.drawCircle(energyX, energyY, 10, energyPaint);
 		
 		//雲をスクロール表示するための処理
 		
