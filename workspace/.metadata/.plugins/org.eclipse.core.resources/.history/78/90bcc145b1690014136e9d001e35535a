@@ -1,0 +1,32 @@
+package com.example.sample1;
+import android.content.Context;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
+
+public final class sound {
+	
+	//コンテキストを格納する変数
+	private static Context context;
+	//「MediaPlayer」クラスを格納する変数
+	private static MediaPlayer mediaPlayer;
+	//「SoundPool」クラスを格納する変数
+	private static SoundPool soundPool;
+	//効果音のサウンドファイルのリソースIDを格納する変数
+	private static int sidSE;
+	
+	//初期化メソッド
+	public static void init(final Context context) {
+		//コンテキストを取得
+		Sounds.context = context;
+		//「SoundPool」クラス（管理クラス）の作成
+		soundPool = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
+		//サウンドファイルを読み込む
+		sidSE = soundPool.load(context, R.raw.laser3, 1);
+	}
+	//効果音を再生するメソッド
+	public static void playSE() {
+		soundPool.play(sidSE, 1.0F, 1.0F, 0, 0, 1.0F);
+	}
+
+}

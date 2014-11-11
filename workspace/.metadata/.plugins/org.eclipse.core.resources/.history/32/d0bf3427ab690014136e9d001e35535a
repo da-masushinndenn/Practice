@@ -1,0 +1,330 @@
+package com.example.sample1;
+
+import java.security.PublicKey;
+
+import android.view.View;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.annotation.SuppressLint;
+import android.content.res.Resources;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.view.MotionEvent;
+import android.graphics.Paint.Align;
+
+
+
+public class GameView extends View {
+	
+	//ゲームの状態を表す定数
+	public final static int GAME_START = 0;
+	public final static int GAME_PLAY = 1;
+	public final static int GAME_OVER = 2;
+	//ゲームの状態を保持する変数
+	private int gameState;
+	
+	//背景画像を格納する変数を宣言
+	private Bitmap bgImage;
+	
+	//スタート画面の背景画像を格納する変数
+	private Bitmap startImage;
+	//スタートボタンの画像を格納する変数
+	private Bitmap startButton;
+	
+	//リトライボタンの画像を格納する変数
+	private Bitmap retryButton;
+	
+	//アニメーションのフレーム数
+	private int frameIndex = 0;
+	
+	//プレイヤー画像を格納する変数を宣言
+	private Bitmap[] player = new Bitmap[5];
+	//プレイヤーのX座標
+	private int playerX;
+	//プレイヤーのY座標
+	private int playerY;
+	
+	//プレイヤーの上昇量
+	private int playerVY;
+	
+	//雲の画像を格納する変数
+	private Bitmap cloud;
+	//雲のX座標
+	private int cloudX = 0;
+	//雲のY座標
+	private int cloudY = 0;
+	//雲の水平方向の移動量
+	private int cloudVX = -12;
+	
+	//画面（Canvas)中央のX座標
+	private int canvasCX;
+	//画面（Canvas)中央のY座標
+	private int canvasCY;
+	
+	//アイテムのX座標
+	private int energyX;
+	//アイテムのY座標
+	private int energyY;
+	//アイテムの水平方向の移動量
+	private int energyVX = -20;
+	
+	//アイテム描画用のペイントオブジェクトを作成
+	Paint energyPaint = new Paint();
+	
+	//スコアのラベルテキスト
+	private final String scoreLabel = "SCORE:";
+	//スコアを保持する変数
+	private int score;
+	//スコア描画用のペイントオブジェクトを作成
+	Paint scorePaint = new Paint();
+	
+	//タイトル描画用のペイントオブジェクトを作成
+	Paint titlePaint = new Paint();
+	
+	//コンストラクタ
+	public GameView(Context context) {
+		super(context);
+	
+	//リソースオブジェクトを作成
+	Resources res = this.getContext().getResources();
+	
+	//背景画像「bg.png」をビットマップに変換して変数「bgImage」に入れる
+	bgImage = BitmapFactory.decodeResource(res, R.drawable.bg);
+	
+	//背景画像「cloud1.gif」をビットマップに変換して変数「cloud」に入れる
+	cloud = BitmapFactory.decodeResource(res, R.drawable.cloud1);
+	
+	//各プレイヤー画像をビットマップに変換して配列に入れる
+	player[0] = BitmapFactory.decodeResource(res, R.drawable.chopper1);
+	player[1] = BitmapFactory.decodeResource(res, R.drawable.chopper2);
+	player[2] = BitmapFactory.decodeResource(res, R.drawable.chopper3);
+	player[3] = BitmapFactory.decodeResource(res, R.drawable.chopper4);
+	player[4] = BitmapFactory.decodeResource(res, R.drawable.chopper5);
+	
+	//スタート画面の背景画像「top.jpg」をビットマップに変換して変数「startImage」に入れる
+	startImage = BitmapFactory.decodeResource(res, R.drawable.top);
+	//スタートボタンの画像「start.png」をビットマップに変換して変数「startImage」に入れる
+	startButton = BitmapFactory.decodeResource(res, R.drawable.start);
+	
+	//リトライボタンの画像「retry.png」をビットマップに変換して変数「retryButton」に入れる
+	retryButton = 
+			BitmapFactory.decodeResource(res, R.drawable.retry);
+		
+	//アイテムの描画色を設定
+	energyPaint.setColor(Color.RED);
+	//アンチエイリアスを有効にする
+	energyPaint.setAntiAlias(true);
+	
+	//スコアの描画色を設定
+	scorePaint.setColor(Color.YELLOW);
+	//スコアのテキストサイズを設定
+	scorePaint.setTextSize(32);
+	//アンチエイリアスを有効にする
+	scorePaint.setAntiAlias(true);
+	
+	//ゲームの状態を「ゲームスタート」に設定
+	gameState = GAME_START;
+	
+	}
+	@SuppressLint("DrawAllocarion")
+	
+	//スーパークラス（継承元）の「onDraw」メソッドをオーバーライドする
+	@Override
+	public void onDraw(Canvas canvas) {
+	
+	//画面（Canvas)中央のX座標を取得
+	canvasCX = canvas.getWidth() / 2;
+	//画面（Canvas)中央のY座標を取得
+	canvasCY = canvas.getHeight() / 2;
+	
+		//ゲームの状態に応じてシーンを切り替える
+		switch(gameState) {
+		case GAME_START:	
+			//画面（Canvas)サイズに応じて背景画像を拡大する
+			bgImage = Bitmap.createScaledBitmap(bgImage, canvas.getWidth()*2, canvas.getHeight(), true);
+			//「startScene」メソッド実行
+			startScene(canvas);
+		break;
+		case GAME_PLAY:
+			//「playScene」メソッドを実行
+			playScene(canvas);
+		break;
+		case GAME_OVER:
+			//「overScene」メソッドを実行
+			overScene(canvas);
+		break;
+		}
+	}
+	
+	//スタート画面を作成するメソッド
+	public void startScene(Canvas canvas) {
+		//スコア初期化
+		score = 0;
+		//背景画像を描画
+		startImage = Bitmap.createScaledBitmap(startImage, canvas.getWidth(),canvas.getHeight(), true);
+		canvas.drawBitmap(startImage, 0, 0, null);
+		
+		//アンチエイリアスを有効にする
+		titlePaint.setColor(Color.WHITE);
+		//タイトルのテキストサイズ
+		titlePaint.setTextSize(86);
+		//タイトルのテキスト配置
+		titlePaint.setTextAlign(Align.CENTER);
+		//タイトルのテキストを描画
+		canvas.drawText("Best Pilot", canvasCX, canvasCY - 200, titlePaint);
+		//スタートボタンを描画
+		canvas.drawBitmap(startButton,
+				canvasCX - startButton.getWidth() / 2,
+				canvasCY - startButton.getHeight(),null);
+		
+	}
+	
+	//ゲーム終了画面を作成するメソッド
+	public void overScene(Canvas canvas){
+		//リトライボタンを描画
+		canvas.drawBitmap(retryButton,
+				canvasCX - retryButton.getWidth() / 2,
+				canvasCY - retryButton.getHeight(), null);
+		//アンチエイリアスを有効にする
+		titlePaint.setAntiAlias(true);
+		//描画色
+		titlePaint.setColor(Color.RED);
+		//テキスト配置
+		titlePaint.setTextAlign(Align.CENTER);
+		//テキストを描画
+		canvas.drawText("Time UP!", canvasCX, canvasCY -200, titlePaint);
+		titlePaint.setColor(Color.BLUE);
+		titlePaint.setTextSize(64);
+		titlePaint.setTextAlign(Align.CENTER);
+		
+		//スコアを描画
+		canvas.drawText("Your score:" + score, canvasCX, canvasCY + 200, titlePaint);
+	}
+	
+	
+	//「playScene」のメソッド
+	public void playScene(Canvas canvas){
+		//画面（Canvas)に背景画像を描画
+		canvas.drawBitmap(bgImage, 0, 0, null);
+		
+		//アイテムをスクロールさせるための処理
+		
+		//アイテムをenergyVXごとに移動させる
+		energyX += energyVX;
+		//画面から消えた、またはプレイヤーにあたっていたら
+		if(energyX < 0 || hitCheck()){
+			//また、右（X座標がCanvas+20の位置）から
+			energyX = canvas.getWidth() + 20;
+			//高さ（Y座標）は画面上半分のランダムな位置から表示されるようにする
+			energyY = (int)Math.floor(Math.random() * canvasCY);
+		}
+		
+		//画面（Canvas)にアイテムを描画
+		canvas.drawCircle(energyX, energyY, 10, energyPaint);
+		
+		//雲をスクロール表示するための処理
+		
+		//雲の座標を「cloudVX」ずつ移動する
+		cloudX += cloudVX;
+		//全体が画面から消えたら
+		if(cloudX < -cloud.getWidth()){
+			//また右から
+			cloudX = canvas.getWidth();
+			//高さ（Y座標）は画面上半分のランダムな位置から
+			//雲が表示されるようにする
+			cloudY = (int)Math.floor(Math.random() * canvasCY);
+		}
+		
+		//画面（Canvas)に雲を描画
+		canvas.drawBitmap(cloud, cloudX, cloudY, null);
+		
+		
+		//プレイヤーの初期表示X座標を設定
+		playerX = canvasCX - player[0].getWidth() / 2;
+		//プレイヤーをplayerVYづつ上昇する
+		playerY += playerVY;
+		//画面上部よりはみ出さないようにする
+		if(playerY < 0)playerY =0;
+		//プレイヤーを下降する
+		playerVY += 4;
+		//元の位置より下に行かないようにする
+		if(playerY > canvasCY)playerY = canvasCY;
+				
+		//画面（Canvas)にプレイヤー画像を順番に描画
+		if(frameIndex > 4) frameIndex = 0;
+		canvas.drawBitmap(player[frameIndex++], playerX, playerY, null);
+		
+		//スコアを描画
+		canvas.drawText(scoreLabel + score, 10, 50, scorePaint);
+	}	
+		//タッチイベント時に実行されるメソッド
+		public boolean onTouchEvent(MotionEvent me){
+			
+			//タッチした場所のX座標を取得
+			int x = (int)me.getX();
+			//タッチした場所のY座標を取得
+			int y = (int)me.getY();
+			
+			//タッチされたら
+			if(me.getAction() == MotionEvent.ACTION_DOWN){
+				//ゲームの状態を取得
+				switch(gameState) {
+				//ゲームスタートの時
+				case GAME_START:
+				//スタートボタンが押されたら
+					if(buttonOn(startButton, x, y)){
+						//ゲームの状態を「GAME_PLAY」に設定する
+						gameState = GAME_PLAY;
+					}
+				break;
+				//ゲームプレイ中の時	
+				case GAME_PLAY:
+				//プレイヤーの上昇値を設定
+				playerVY = -20;
+				
+				break;
+				
+				//ゲームオーバーの時
+				case GAME_OVER:
+					//リトライボタンが押されたら
+					if(buttonOn(startButton, x, y)) {
+						//ゲームの状態を「GAME_START」に設定する
+						gameState = GAME_START;
+					}
+					break;
+				
+				}
+			}
+			//呼び出し元に戻る
+			return true;
+		}
+		
+		//ボタンがタッチされたかどうかチェックするメソッド
+		public boolean buttonOn(Bitmap button, int x, int y) {
+			//ボタンのX座標を取得
+			int posX = canvasCX - startButton.getWidth() / 2;
+			//ボタンのY座標を取得
+			int posY = canvasCY - startButton.getHeight();
+		}
+		
+		//衝突判定メソッド
+		public boolean hitCheck(){
+			if(playerX < energyX &&
+			  (playerX + player[0].getWidth()) > energyX &&
+			  playerY < energyY && 
+			  (playerY + player[0].getHeight()) > energyY){
+			
+			//スコアを加算
+			score += 10;
+			//アイテムの中心座標が、アイテムの短形領域なら「true」を返す
+			return true;
+			}else{
+			//そうでなければ「false」を返す
+			return false;
+			}
+		}
+	
+
+}

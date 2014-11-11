@@ -25,6 +25,13 @@ public class GameView extends View {
 	//ゲームの状態を保持する変数
 	private int gameState;
 	
+	//プレイ残り時間（秒）
+	private final static long TIME = 60;
+	//ゲーム開始時刻
+	private long gameStarted;
+	//残り時間
+	private long remainedTime;
+	
 	//背景画像を格納する変数を宣言
 	private Bitmap bgImage;
 	
@@ -83,6 +90,9 @@ public class GameView extends View {
 	//タイトル描画用のペイントオブジェクトを作成
 	Paint titlePaint = new Paint();
 	
+	//残り時間描画用のペイントオブジェクトを作成
+	Paint timePaint =new Paint();
+	
 	//コンストラクタ
 	public GameView(Context context) {
 		super(context);
@@ -124,8 +134,18 @@ public class GameView extends View {
 	//アンチエイリアスを有効にする
 	scorePaint.setAntiAlias(true);
 	
+	//残り時間の描画色を設定
+	timePaint.setColor(Color.RED);
+	//残り時間のテキストサイズを設定
+	timePaint.setTextSize(32);
+	//アンチエイリアスを有効にする
+	timePaint.setAntiAlias(true);
+	
 	//ゲームの状態を「ゲームスタート」に設定
 	gameState = GAME_START;
+	
+	//「sounds」のクラスを初期化
+	Sounds.init(context);
 	
 	}
 	@SuppressLint("DrawAllocarion")
@@ -206,6 +226,22 @@ public class GameView extends View {
 	
 	//「playScene」のメソッド
 	public void playScene(Canvas canvas){
+		
+		//残り時間を取得
+		remainedTime =
+				TIME - (System.currentTimeMillis() - gameStarted) / 1000;
+		//残り時間が0より小さくなったら
+		if(remainedTime < 0) {
+			
+			//BGMの停止
+			Sounds.stopBGM();
+			//ゲームの状態を「GAME_OVER」に設定
+			gameState = GAME_OVER;
+						
+			//リターン
+			return;
+		}
+		
 		//画面（Canvas)に背景画像を描画
 		canvas.drawBitmap(bgImage, 0, 0, null);
 		
@@ -258,16 +294,69 @@ public class GameView extends View {
 		
 		//スコアを描画
 		canvas.drawText(scoreLabel + score, 10, 50, scorePaint);
+		
+		//残り時間を描画
+		canvas.drawText("あと" + remainedTime + "秒", 10, 100, timePaint);
 	}	
 		//タッチイベント時に実行されるメソッド
 		public boolean onTouchEvent(MotionEvent me){
+			
+			//タッチした場所のX座標を取得
+			int x = (int)me.getX();
+			//タッチした場所のY座標を取得
+			int y = (int)me.getY();
+			
 			//タッチされたら
 			if(me.getAction() == MotionEvent.ACTION_DOWN){
+				//ゲームの状態を取得
+				switch(gameState) {
+				//ゲームスタートの時
+				case GAME_START:
+				//スタートボタンが押されたら
+					if(buttonOn(startButton, x, y)){
+						//ゲームの状態を「GAME_PLAY」に設定する
+						gameState = GAME_PLAY;
+						Sounds.playBGM();
+						gameStarted = System.currentTimeMillis();
+					}
+				break;
+				//ゲームプレイ中の時	
+				case GAME_PLAY:
 				//プレイヤーの上昇値を設定
 				playerVY = -20;
+				
+				break;
+				
+				//ゲームオーバーの時
+				case GAME_OVER:
+					//リトライボタンが押されたら
+					if(buttonOn(startButton, x, y)) {
+						//ゲームの状態を「GAME_START」に設定する
+						gameState = GAME_START;
+					}
+					break;
+				
+				}
 			}
 			//呼び出し元に戻る
 			return true;
+		}
+		
+		//ボタンがタッチされたかどうかチェックするメソッド
+		public boolean buttonOn(Bitmap button, int x, int y) {
+			//ボタンのX座標を取得
+			int posX = canvasCX - startButton.getWidth() / 2;
+			//ボタンのY座標を取得
+			int posY = canvasCY - startButton.getHeight();
+			
+			if(x > posX && x < posX + startButton.getWidth()&&
+			   y > posY && y < posY + startButton.getHeight()) {
+				//ボタンがタッチされたら「true」を返す
+				return true;
+			}else{
+				//そうでなければ「false」を返す
+				return false;
+			}
 		}
 		
 		//衝突判定メソッド
@@ -279,6 +368,9 @@ public class GameView extends View {
 			
 			//スコアを加算
 			score += 10;
+			
+			//効果音を再生
+			Sounds.playSE();
 			//アイテムの中心座標が、アイテムの短形領域なら「true」を返す
 			return true;
 			}else{
