@@ -22,8 +22,6 @@ public class GameView extends View {
 	public final static int GAME_START = 0;
 	public final static int GAME_PLAY = 1;
 	public final static int GAME_OVER = 2;
-	//ƒQ[ƒ€‚Ìó‘Ô‚ğ•Û‚·‚é•Ï”
-	private int gameState;
 	
 	//”wŒi‰æ‘œ‚ğŠi”[‚·‚é•Ï”‚ğéŒ¾
 	private Bitmap bgImage;

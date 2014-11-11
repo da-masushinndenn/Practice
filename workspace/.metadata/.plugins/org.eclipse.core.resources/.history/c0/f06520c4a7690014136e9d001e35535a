@@ -22,8 +22,6 @@ public class GameView extends View {
 	public final static int GAME_START = 0;
 	public final static int GAME_PLAY = 1;
 	public final static int GAME_OVER = 2;
-	//ゲームの状態を保持する変数
-	private int gameState;
 	
 	//背景画像を格納する変数を宣言
 	private Bitmap bgImage;
@@ -124,9 +122,6 @@ public class GameView extends View {
 	//アンチエイリアスを有効にする
 	scorePaint.setAntiAlias(true);
 	
-	//ゲームの状態を「ゲームスタート」に設定
-	gameState = GAME_START;
-	
 	}
 	@SuppressLint("DrawAllocarion")
 	
@@ -138,24 +133,18 @@ public class GameView extends View {
 	canvasCX = canvas.getWidth() / 2;
 	//画面（Canvas)中央のY座標を取得
 	canvasCY = canvas.getHeight() / 2;
+	//画面（Canvas)サイズに応じて背景画像を拡大する
+	bgImage = Bitmap.createScaledBitmap(bgImage, canvas.getWidth()*2, canvas.getHeight(), true);
 	
-		//ゲームの状態に応じてシーンを切り替える
-		switch(gameState) {
-		case GAME_START:	
-			//画面（Canvas)サイズに応じて背景画像を拡大する
-			bgImage = Bitmap.createScaledBitmap(bgImage, canvas.getWidth()*2, canvas.getHeight(), true);
-			//「startScene」メソッド実行
-			startScene(canvas);
-		break;
-		case GAME_PLAY:
-			//「playScene」メソッドを実行
-			playScene(canvas);
-		break;
-		case GAME_OVER:
-			//「overScene」メソッドを実行
-			overScene(canvas);
-		break;
-		}
+	//「startScene」メソッド実行
+	//startScene(canvas);
+	
+	//「playScene」メソッドを実行
+	//playScene(canvas);
+	
+	//「overScene」メソッドを実行
+	overScene(canvas);
+	
 	}
 	
 	//スタート画面を作成するメソッド

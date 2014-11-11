@@ -18,13 +18,6 @@ import android.graphics.Paint.Align;
 
 public class GameView extends View {
 	
-	//ゲームの状態を表す定数
-	public final static int GAME_START = 0;
-	public final static int GAME_PLAY = 1;
-	public final static int GAME_OVER = 2;
-	//ゲームの状態を保持する変数
-	private int gameState;
-	
 	//背景画像を格納する変数を宣言
 	private Bitmap bgImage;
 	
@@ -32,9 +25,6 @@ public class GameView extends View {
 	private Bitmap startImage;
 	//スタートボタンの画像を格納する変数
 	private Bitmap startButton;
-	
-	//リトライボタンの画像を格納する変数
-	private Bitmap retryButton;
 	
 	//アニメーションのフレーム数
 	private int frameIndex = 0;
@@ -107,10 +97,6 @@ public class GameView extends View {
 	startImage = BitmapFactory.decodeResource(res, R.drawable.top);
 	//スタートボタンの画像「start.png」をビットマップに変換して変数「startImage」に入れる
 	startButton = BitmapFactory.decodeResource(res, R.drawable.start);
-	
-	//リトライボタンの画像「retry.png」をビットマップに変換して変数「retryButton」に入れる
-	retryButton = 
-			BitmapFactory.decodeResource(res, R.drawable.retry);
 		
 	//アイテムの描画色を設定
 	energyPaint.setColor(Color.RED);
@@ -124,9 +110,6 @@ public class GameView extends View {
 	//アンチエイリアスを有効にする
 	scorePaint.setAntiAlias(true);
 	
-	//ゲームの状態を「ゲームスタート」に設定
-	gameState = GAME_START;
-	
 	}
 	@SuppressLint("DrawAllocarion")
 	
@@ -138,24 +121,15 @@ public class GameView extends View {
 	canvasCX = canvas.getWidth() / 2;
 	//画面（Canvas)中央のY座標を取得
 	canvasCY = canvas.getHeight() / 2;
+	//画面（Canvas)サイズに応じて背景画像を拡大する
+	bgImage = Bitmap.createScaledBitmap(bgImage, canvas.getWidth()*2, canvas.getHeight(), true);
 	
-		//ゲームの状態に応じてシーンを切り替える
-		switch(gameState) {
-		case GAME_START:	
-			//画面（Canvas)サイズに応じて背景画像を拡大する
-			bgImage = Bitmap.createScaledBitmap(bgImage, canvas.getWidth()*2, canvas.getHeight(), true);
-			//「startScene」メソッド実行
-			startScene(canvas);
-		break;
-		case GAME_PLAY:
-			//「playScene」メソッドを実行
-			playScene(canvas);
-		break;
-		case GAME_OVER:
-			//「overScene」メソッドを実行
-			overScene(canvas);
-		break;
-		}
+	//「startScene」メソット実行
+	startScene(canvas);
+	
+	//「playScene」メソッドを実行
+	//playScene(canvas);
+	
 	}
 	
 	//スタート画面を作成するメソッド
@@ -180,29 +154,6 @@ public class GameView extends View {
 				canvasCY - startButton.getHeight(),null);
 		
 	}
-	
-	//ゲーム終了画面を作成するメソッド
-	public void overScene(Canvas canvas){
-		//リトライボタンを描画
-		canvas.drawBitmap(retryButton,
-				canvasCX - retryButton.getWidth() / 2,
-				canvasCY - retryButton.getHeight(), null);
-		//アンチエイリアスを有効にする
-		titlePaint.setAntiAlias(true);
-		//描画色
-		titlePaint.setColor(Color.RED);
-		//テキスト配置
-		titlePaint.setTextAlign(Align.CENTER);
-		//テキストを描画
-		canvas.drawText("Time UP!", canvasCX, canvasCY -200, titlePaint);
-		titlePaint.setColor(Color.BLUE);
-		titlePaint.setTextSize(64);
-		titlePaint.setTextAlign(Align.CENTER);
-		
-		//スコアを描画
-		canvas.drawText("Your score:" + score, canvasCX, canvasCY + 200, titlePaint);
-	}
-	
 	
 	//「playScene」のメソッド
 	public void playScene(Canvas canvas){
