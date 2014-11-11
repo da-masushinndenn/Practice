@@ -234,7 +234,13 @@ int drawable abc_textfield_searchview_holo_dark 0x7f020053
 int drawable abc_textfield_searchview_holo_light 0x7f020054
 int drawable abc_textfield_searchview_right_holo_dark 0x7f020055
 int drawable abc_textfield_searchview_right_holo_light 0x7f020056
-int drawable ic_launcher 0x7f020057
+int drawable bg 0x7f020057
+int drawable chopper1 0x7f020058
+int drawable chopper2 0x7f020059
+int drawable chopper3 0x7f02005a
+int drawable chopper4 0x7f02005b
+int drawable chopper5 0x7f02005c
+int drawable ic_launcher 0x7f02005d
 int id action_bar 0x7f09001c
 int id action_bar_activity_content 0x7f090001
 int id action_bar_container 0x7f09001b

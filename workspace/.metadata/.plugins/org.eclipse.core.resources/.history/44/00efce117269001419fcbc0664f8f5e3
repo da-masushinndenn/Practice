@@ -1,0 +1,62 @@
+package com.example.sample1;
+
+import android.view.View;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+
+import android.annotation.SuppressLint;
+import android.content.res.Resources;
+import android.graphics.BitmapFactory;
+
+
+
+public class GameView extends View {
+	
+	//プレイヤー画像を格納する変数を宣言
+	private Bitmap player;
+	//プレイヤーのX座標
+	private int playerX;
+	//プレイヤーのY座標
+	private int playerY;
+	//画面（Canvas）中央のX座標
+	private int canvasCX;
+	//画面（Canvas)中央のY座標
+	private int canvasCY;
+	
+	//コンストラクタ
+	public GameView(Context context) {
+		super(context);
+	
+	//リソースオブジェクトを作成
+	Resources res = this.getContext().getResources();
+	//プレイヤー画像「chopper1．gif」をビットマップに変換して変数「player」に入れる
+	player = BitmapFactory.decodeResource(res, R.drawable.chopper1);
+	}
+	@SuppressLint("DrawAllocarion")
+	
+	//スーパークラス（継承元）の「onDraw」メソッドをオーバーライドする
+	@Override
+	public void onDraw(Canvas canvas) {
+	
+	//画面（Canvas)中央のX座標を取得
+	canvasCX = canvas.getWidth() / 2;
+	//画面（Canvas)中央のY座標を取得
+	canvasCY = canvas.getHeight() / 2;
+	//「playScene」メソッドを実行
+	playScene(canvas);
+	
+	}
+	
+	//「playScene」のメソッド
+	public void playScene(Canvas canvas){
+		//プレイヤーの初期表示X座標を設定
+		playerX = canvasCX - player.getWidth() / 2;
+		//プレイヤーの初期表示Y座標を設定
+		playerY = canbasCY - player.getHeight() / 2;
+		//画面（Canvas)にプレイヤーを配置
+		canvas.drawBitmap(player, playerX, playerY, null);
+	}
+
+}
