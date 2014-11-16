@@ -104,18 +104,21 @@ public class Janken {
                     break;
                 }
             }
-        System.out.println("もう一回やる時は半角数字の「1」を入力して下さい");
-        System.out.println("終了するときはそれ以外の文字を入力して下さい");
+        System.out.println("もう一回やる？");
+        System.out.println("１：やるやる～！");
+        System.out.println("２：いや・・・もういいっすわ・・・");
         java.util.Scanner sc = new java.util.Scanner(System.in);
         int re = sc.nextInt();
         if(re == 1){
             System.out.println("*************************************");
             System.out.println("よっしゃ！もういっちょ！");
-        }else{
+        }else if(re == 2){
         System.out.println("*************************************");
         System.out.println("");
         System.out.println("おしまい");
         break;
+        }else{
+            System.out.println("1か2（半角数字）を入力して下さい");
         }
     }
 }
