@@ -7,7 +7,7 @@ package tes;
 import java.io.*;
 /**
  *
- * @author ãƒ€ãƒ¼ãƒã‚¹ç¥æ®¿
+ * @author ƒ_[ƒ}ƒX_“a
  */
 public class Tes {
 
@@ -18,26 +18,26 @@ public class Tes {
         // TODO code application logic here
         
         
-        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ‰“ã¡è¾¼ã‚“ã æ–‡å­—ã‚’å—ã‘å–ã‚‹
+        //ƒvƒŒƒCƒ„[‘Å‚¿‚ñ‚¾•¶š‚ğó‚¯æ‚é
          try{
              while(true){
-                //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ‰“ã¡è¾¼ã‚€æ–‡å­—
-                String gu = "ã‚°ãƒ¼";
-                String cho = "ãƒãƒ§ã‚­";
-                String pa = "ãƒ‘ãƒ¼";
-                //å…¥åŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ç”Ÿæˆ
+                //ƒvƒŒƒCƒ„[‚ª‘Å‚¿‚Ş•¶š
+                String gu = "ƒO[";
+                String cho = "ƒ`ƒ‡ƒL";
+                String pa = "ƒp[";
+                //“ü—ÍƒXƒgƒŠ[ƒ€‚Ì¶¬
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-                //ã€Œã‚°ãƒ¼ã€ã€Œãƒãƒ§ã‚­ã€ã€Œãƒ‘ãƒ¼ã€ã®ã©ã‚Œã‹ã‚’æ‰“ã¡è¾¼ã‚“ã§ä¸‹ã•ã„ã¨è¡¨ç¤ºã€‚
-                System.out.println("ã€Œã‚°ãƒ¼ã€ã€Œãƒãƒ§ã‚­ã€ã€Œãƒ‘ãƒ¼ã€ã®ã©ã‚Œã‹ã‚’æ‰“ã¡è¾¼ã‚“ã§ä¸‹ã•ã„ã€€â‡’ã€€");
+                //uƒO[vuƒ`ƒ‡ƒLvuƒp[v‚Ì‚Ç‚ê‚©‚ğ‘Å‚¿‚ñ‚Å‰º‚³‚¢‚Æ•\¦B
+                System.out.println("uƒO[vuƒ`ƒ‡ƒLvuƒp[v‚Ì‚Ç‚ê‚©‚ğ‘Å‚¿‚ñ‚Å‰º‚³‚¢@Ë@");
                 String player = br.readLine();
-                System.out.println("ã‚ãªãŸãŒå‡ºã—ãŸã®ã¯ã€Œ" + player + "ã€ã§ã™ã€‚");
+                System.out.println("‚ ‚È‚½‚ªo‚µ‚½‚Ì‚Íu" + player + "v‚Å‚·B");
 
                 if(gu.equals(player) || cho.equals(player) || pa.equals(player)){
-                    System.out.println("ã‚ãªãŸãŒå‡ºã—ãŸã®ã¯ã€Œ" + player + "ã€ã§ã™ã€‚");
+                    System.out.println("‚ ‚È‚½‚ªo‚µ‚½‚Ì‚Íu" + player + "v‚Å‚·B");
                     break;
                 }else{
-                    System.out.println("ã€Œã‚°ãƒ¼ã€ã€Œãƒãƒ§ã‚­ã€ã€Œãƒ‘ãƒ¼ã€ä»¥å¤–ã¯æ‰“ã¡è¾¼ã¾ãªã„ã§ä¸‹ã•ã„");
+                    System.out.println("uƒO[vuƒ`ƒ‡ƒLvuƒp[vˆÈŠO‚Í‘Å‚¿‚Ü‚È‚¢‚Å‰º‚³‚¢");
                 }
                 
             }
