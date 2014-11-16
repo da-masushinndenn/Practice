@@ -247,14 +247,17 @@ public class MQMain {
         try {
             //初期化処理
             final int IMPUT_MAX = 3; //最大入力値
+            while (true){
             //キー入力読み込み処理（int型）
             java.util.Scanner sc = new java.util.Scanner(System.in);
             int inputInt = sc.nextInt();
             //入力値チェックと入力番号への代入
             if (inputInt > 0 && inputInt <= IMPUT_MAX) {
                 tmpInputNum = inputInt;
+                break;
             } else {
                 System.out.println("※ コマンドは" + IMPUT_MAX + "以下で入力して下さい ※ ");
+            }
             }
         } catch (Exception e) {
             System.out.println("※ 数字以外は入力しないで下さい ※");
