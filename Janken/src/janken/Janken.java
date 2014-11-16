@@ -16,6 +16,7 @@ public class Janken {
     public static void main(String[] args) {
         // TODO code application logic here
         
+        while(true){
         //「グー」「チョキ」「パー」の定数
         int GU = 0;
         int CHO = 1;
@@ -41,14 +42,6 @@ public class Janken {
             int player = sc.nextInt();
             //じゃんけん用の乱数
             int cpu =(int)(Math.random()*3);
-            //cpuが出す役
-                if(cpu == GU){
-                    System.out.println("私が出したのは「グー」です！！");
-                }else if(cpu == CHO){
-                    System.out.println("私が出したのは「チョキ」です！！");
-                }else if(cpu == PA){
-                    System.out.println("私が出したのは「パー」です！！");
-                }
                 if(player == 1){
                     System.out.println("あなたが出したのは「グー」です");
                 }else if(player == 2){
@@ -59,6 +52,14 @@ public class Janken {
                     System.out.println("１～３（半角数字）を入力して下さい");
                 }
 
+                //cpuが出す役
+                if(cpu == GU){
+                    System.out.println("私が出したのは「グー」です！！");
+                }else if(cpu == CHO){
+                    System.out.println("私が出したのは「チョキ」です！！");
+                }else if(cpu == PA){
+                    System.out.println("私が出したのは「パー」です！！");
+                }
                 if(player == 1 && cpu == GU){
                     System.out.println("あいこですね！");
                     System.out.println("");
@@ -66,10 +67,13 @@ public class Janken {
                 }else if(player == 1 && cpu == CHO){
                     System.out.println("あなたの勝ちです！！");
                     System.out.println("おめでとう！");
+                    System.out.println("*************************************");
                     break;
                 }else if(player == 1 && cpu == PA){
                     System.out.println("あなたの負けです！");
                     System.out.println("ざ～んねん！");
+                    System.out.println("*************************************");
+                    break;
                 }else if(player == 2 && cpu == CHO){
                     System.out.println("あいこですね！");
                     System.out.println("");
@@ -77,10 +81,12 @@ public class Janken {
                 }else if(player == 2 && cpu == PA){
                     System.out.println("あなたの勝ちです！！");
                     System.out.println("おめでとう！");
+                    System.out.println("*************************************");
                     break;
                 }else if(player == 2 && cpu == GU){
                     System.out.println("あなたの負けです！");
                     System.out.println("ざ～んねん！");
+                    System.out.println("*************************************");
                     break;
                 }else if(player == 3 && cpu == PA){
                     System.out.println("あいこですね！");
@@ -89,15 +95,33 @@ public class Janken {
                 }else if(player == 3 && cpu == GU){
                     System.out.println("あなたの勝ちです！！");
                     System.out.println("おめでとう！");
+                    System.out.println("*************************************");
                     break;
                 }else if(player == 3 && cpu == CHO){
                     System.out.println("あなたの負けです！");
                     System.out.println("ざ～んねん！");
+                    System.out.println("*************************************");
                     break;
                 }
             }
+        System.out.println("もう一回やる？");
+        System.out.println("１：やるやる～！");
+        System.out.println("２：いや・・・もういいっすわ・・・");
+        java.util.Scanner sc = new java.util.Scanner(System.in);
+        int re = sc.nextInt();
+        if(re == 1){
+            System.out.println("*************************************");
+            System.out.println("よっしゃ！もういっちょ！");
+        }else if(re == 2){
+        System.out.println("*************************************");
+        System.out.println("");
         System.out.println("おしまい");
+        break;
+        }else{
+            System.out.println("1か2（半角数字）を入力して下さい");
         }
+    }
+}
         
 
         
