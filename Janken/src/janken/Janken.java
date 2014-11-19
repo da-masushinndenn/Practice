@@ -4,125 +4,142 @@
  * and open the template in the editor.
  */
 package janken;
+import java.io.*;
 /**
  *
- * @author ãƒ€ãƒ¼ãƒã‚¹ç¥æ®¿
+ * @author ƒ_[ƒ}ƒX_“a
  */
 public class Janken {
+    //Ÿ”s”‚ğƒJƒEƒ“ƒg‚·‚é•Ï”
+    private static int win = 0;
+    private static int lose =0;
+    //‚à‚¤ˆê“x‚â‚é‚©
+    private static boolean retry = true;
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        //uƒO[vuƒ`ƒ‡ƒLvuƒp[v‚Ì’è”
+        final int GU = 0;
+        final int CHO = 1;
+        final int PA = 2;
         
-        while(true){
-        //ã€Œã‚°ãƒ¼ã€ã€Œãƒãƒ§ã‚­ã€ã€Œãƒ‘ãƒ¼ã€ã®å®šæ•°
-        int GU = 0;
-        int CHO = 1;
-        int PA = 2;
+        //ƒvƒŒƒCƒ„[‚ª‘Å‚¿‚Ş•¶š
+        String gu = "ƒO[";
+        String cho = "ƒ`ƒ‡ƒL";
+        String pa = "ƒp[";
         
+        System.out.println("‚³‚ A„‚Æ‚¶‚á‚ñ‚¯‚ñ‚µ‚Ü‚µ‚å‚¤IIŸ•‰‚Å‚·‚æ[II");
+        //ƒvƒŒƒCƒ„[‘Å‚¿‚ñ‚¾•¶š‚ğó‚¯æ‚é
+        while(retry){
+        try{
+            //“ü—ÍƒXƒgƒŠ[ƒ€‚Ì¶¬
 
-        
-        //ã¯ã˜ã‚ã«è¡¨ç¤ºã•ã‚Œã‚‹æ–‡å­—
-        System.out.println("ã•ã‚ï¼ç§ã¨ã˜ã‚ƒã‚“ã‘ã‚“ã—ã¾ã—ã‚‡ã†ï¼ï¼");
-        System.out.println("æº–å‚™ã¯ã„ã„ã§ã™ã‹ï¼Ÿ");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("ã˜ã‚ƒï½ã‚“ã‘ï½ã‚“ï¼Ÿ");
-        
-        
-        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ‰“ã¡è¾¼ã‚“ã æ–‡å­—ã‚’å—ã‘å–ã‚‹
-        while(true){
-            System.out.println("ï¼‘ï½ï¼“ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„");
-            System.out.println("ï¼‘ï¼šã€Œã‚°ãƒ¼ã€");
-            System.out.println("ï¼’ï¼šã€Œãƒãƒ§ã‚­ã€");
-            System.out.println("ï¼“ï¼šã€Œãƒ‘ãƒ¼ã€");
-            java.util.Scanner sc = new java.util.Scanner(System.in);
-            int player = sc.nextInt();
-            //ã˜ã‚ƒã‚“ã‘ã‚“ç”¨ã®ä¹±æ•°
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            String player;
+                while(true){
+                    //uƒO[vuƒ`ƒ‡ƒLvuƒp[v‚Ì‚Ç‚ê‚©‚ğ‘Å‚¿‚ñ‚Å‰º‚³‚¢‚Æ•\¦B
+                    System.out.println("uƒO[vuƒ`ƒ‡ƒLvuƒp[v‚Ì‚Ç‚ê‚©‚ğ‘Å‚¿‚ñ‚Å‰º‚³‚¢@Ë@");
+                    player = br.readLine();
+                    if(gu.equals(player) || cho.equals(player) || pa.equals(player)){
+                        System.out.println("‚ ‚È‚½‚ªo‚µ‚½‚Ì‚Íu" + player + "v‚Å‚·B");
+                        break;
+                    }else{
+                    System.out.println("uƒO[vuƒ`ƒ‡ƒLvuƒp[vˆÈŠO‚Í‘Å‚¿‚Ü‚È‚¢‚Å‰º‚³‚¢");
+                    }
+                }
             int cpu =(int)(Math.random()*3);
-                if(player == 1){
-                    System.out.println("ã‚ãªãŸãŒå‡ºã—ãŸã®ã¯ã€Œã‚°ãƒ¼ã€ã§ã™");
-                }else if(player == 2){
-                    System.out.println("ã‚ãªãŸãŒå‡ºã—ãŸã®ã¯ã€Œãƒãƒ§ã‚­ã€ã§ã™");
-                }else if(player == 3){
-                    System.out.println("ã‚ãªãŸãŒå‡ºã—ãŸã®ã¯ã€Œãƒ‘ãƒ¼ã€ã§ã™");
-                }else{
-                    System.out.println("ï¼‘ï½ï¼“ï¼ˆåŠè§’æ•°å­—ï¼‰ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„");
-                }
-
-                //cpuãŒå‡ºã™å½¹
+                //cpu‚ªo‚·–ğ
                 if(cpu == GU){
-                    System.out.println("ç§ãŒå‡ºã—ãŸã®ã¯ã€Œã‚°ãƒ¼ã€ã§ã™ï¼ï¼");
+                    System.out.println("„‚ªo‚µ‚½‚Ì‚ÍuƒO[v‚Å‚·II");
                 }else if(cpu == CHO){
-                    System.out.println("ç§ãŒå‡ºã—ãŸã®ã¯ã€Œãƒãƒ§ã‚­ã€ã§ã™ï¼ï¼");
+                    System.out.println("„‚ªo‚µ‚½‚Ì‚Íuƒ`ƒ‡ƒLv‚Å‚·II");
                 }else if(cpu == PA){
-                    System.out.println("ç§ãŒå‡ºã—ãŸã®ã¯ã€Œãƒ‘ãƒ¼ã€ã§ã™ï¼ï¼");
+                    System.out.println("„‚ªo‚µ‚½‚Ì‚Íuƒp[v‚Å‚·II");
                 }
-                if(player == 1 && cpu == GU){
-                    System.out.println("ã‚ã„ã“ã§ã™ã­ï¼");
-                    System.out.println("");
-                    System.out.println("ã‚ï½ã„ã“ï½ã§ï¼Ÿ");
-                }else if(player == 1 && cpu == CHO){
-                    System.out.println("ã‚ãªãŸã®å‹ã¡ã§ã™ï¼ï¼");
-                    System.out.println("ãŠã‚ã§ã¨ã†ï¼");
-                    System.out.println("*************************************");
-                    break;
-                }else if(player == 1 && cpu == PA){
-                    System.out.println("ã‚ãªãŸã®è² ã‘ã§ã™ï¼");
-                    System.out.println("ã–ï½ã‚“ã­ã‚“ï¼");
-                    System.out.println("*************************************");
-                    break;
-                }else if(player == 2 && cpu == CHO){
-                    System.out.println("ã‚ã„ã“ã§ã™ã­ï¼");
-                    System.out.println("");
-                    System.out.println("ã‚ï½ã„ã“ï½ã§ï¼Ÿ");
-                }else if(player == 2 && cpu == PA){
-                    System.out.println("ã‚ãªãŸã®å‹ã¡ã§ã™ï¼ï¼");
-                    System.out.println("ãŠã‚ã§ã¨ã†ï¼");
-                    System.out.println("*************************************");
-                    break;
-                }else if(player == 2 && cpu == GU){
-                    System.out.println("ã‚ãªãŸã®è² ã‘ã§ã™ï¼");
-                    System.out.println("ã–ï½ã‚“ã­ã‚“ï¼");
-                    System.out.println("*************************************");
-                    break;
-                }else if(player == 3 && cpu == PA){
-                    System.out.println("ã‚ã„ã“ã§ã™ã­ï¼");
-                    System.out.println("");
-                    System.out.println("ã‚ï½ã„ã“ï½ã§ï¼Ÿ");
-                }else if(player == 3 && cpu == GU){
-                    System.out.println("ã‚ãªãŸã®å‹ã¡ã§ã™ï¼ï¼");
-                    System.out.println("ãŠã‚ã§ã¨ã†ï¼");
-                    System.out.println("*************************************");
-                    break;
-                }else if(player == 3 && cpu == CHO){
-                    System.out.println("ã‚ãªãŸã®è² ã‘ã§ã™ï¼");
-                    System.out.println("ã–ï½ã‚“ã­ã‚“ï¼");
-                    System.out.println("*************************************");
-                    break;
-                }
+            switch(cpu){
+                case 0:
+                    if(gu.equals(player)){
+                        System.out.println("‚ [‚¢‚±[‚ÅH");
+                    }else if(cho.equals(player)){
+                        System.out.println("‚ ‚È‚½‚Ì•‰‚¯‚Å‚·I‚´‚ñ‚Ë‚ñI");
+                        System.out.println("***************************");
+                        lose += 1;
+                        winlose();
+                        retry();
+                    }else if(pa.equals(player)){
+                        System.out.println("‚ ‚È‚½‚ÌŸ‚¿‚Å‚·I‚â‚Á‚½‚ËII");
+                        System.out.println("***************************");
+                        win += 1;
+                        winlose();
+                        retry();
+                    }
+                break;
+                case 1:
+                    if(gu.equals(player)){
+                        System.out.println("‚ ‚È‚½‚ÌŸ‚¿‚Å‚·I‚â‚Á‚½‚ËII");
+                        System.out.println("***************************");
+                        win += 1;
+                        winlose();
+                        retry();
+                    }else if(cho.equals(player)){
+                        System.out.println("‚ [‚¢‚±[‚ÅH");
+                    }else if(pa.equals(player)){
+                        System.out.println("‚ ‚È‚½‚Ì•‰‚¯‚Å‚·I‚´‚ñ‚Ë‚ñI");
+                        System.out.println("***************************");
+                        lose += 1;
+                        winlose();
+                        retry();
+                    }
+                break;
+                case 2:
+                    if(gu.equals(player)){
+                        System.out.println("‚ ‚È‚½‚Ì•‰‚¯‚Å‚·I‚´‚ñ‚Ë‚ñI");
+                        System.out.println("***************************");
+                        lose += 1;
+                        winlose();
+                        retry();
+                    }else if(cho.equals(player)){
+                        System.out.println("‚ ‚È‚½‚ÌŸ‚¿‚Å‚·I‚â‚Á‚½‚ËII");
+                        System.out.println("***************************");
+                        win += 1;
+                        winlose();
+                        retry();
+                    }else if(pa.equals(player)){
+                        System.out.println("‚ [‚¢‚±[‚ÅH");
+                    }
+                break;
+                    
             }
-        System.out.println("ã‚‚ã†ä¸€å›ã‚„ã‚‹æ™‚ã¯åŠè§’æ•°å­—ã®ã€Œ1ã€ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„");
-        System.out.println("çµ‚äº†ã™ã‚‹ã¨ãã¯ãã‚Œä»¥å¤–ã®æ–‡å­—ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„");
-        java.util.Scanner sc = new java.util.Scanner(System.in);
-        int re = sc.nextInt();
-        if(re == 1){
-            System.out.println("*************************************");
-            System.out.println("ã‚ˆã£ã—ã‚ƒï¼ã‚‚ã†ã„ã£ã¡ã‚‡ï¼");
-        }else{
-        System.out.println("*************************************");
-        System.out.println("");
-        System.out.println("ãŠã—ã¾ã„");
-        break;
-        }
-    }
-}
-        
 
-        
-        
-}
+        }catch(IOException e){
+            System.out.println("Exception :" + e);
+        }
+        }
     
 
+    }
+    private static void retry(){
+    //“ü—ÍƒXƒgƒŠ[ƒ€‚Ì¶¬
+    try{
+        java.util.Scanner sc = new java.util.Scanner(System.in);
+        System.out.println("‚à‚¤ˆê“x‘±‚¯‚éê‡‚Íu1v‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢");
+        int re = sc.nextInt();
+            if(re == 1){
+               System.out.println("‚æ‚µI‚à‚¤ˆê‰ñŸ•‰‚µ‚Ü‚µ‚å‚¤I");
+            }else{
+            retry = false;
+            }
+        }catch(Exception e){
+            retry = false;
+        }
+    }
+    private static void winlose(){
+    System.out.println("‚ ‚È‚½‚ÌŸ”s”");
+    System.out.println("Ÿ‚¿F" + win + "‰ñ");
+    System.out.println("•‰‚¯F" + lose + "‰ñ");
+    System.out.println("***************************");
+    }
+}
