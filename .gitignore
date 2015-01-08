@@ -1,3 +1,28 @@
+<<<<<<< HEAD
+/JavaApplication1/nbproject/private/
+/JavaApplication1/build/
+/KotoQuizTest/nbproject/private/
+/KotoQuizTest/build/
+/KotoQuiz/build/
+/KotoQuiz/dist/
+/test/nbproject/private/
+/KotoDebug/nbproject/private/
+/KotoDebug/build/
+/masuQuiz/nbproject/private/
+/masuQuiz/build/
+/masuQuiz/dist/
+/KotoBeginnerError/nbproject/private/
+/KotoBeginnerError/build/
+/ShootingHery/gen/
+/Janken/nbproject/private/
+/Janken/build/
+/Janken/dist/
+/Janken_1/nbproject/private/
+/Janken_1/build/
+/Tes/nbproject/private/
+/Tes/build/
+/Janken1/nbproject/private/
+=======
 /JavaApplication1/nbproject/private/
 /JavaApplication1/build/
 /KotoQuizTest/nbproject/private/
@@ -22,5 +47,10 @@
 /Tes/build/
 /Janken1/nbproject/private/
 /Janken1/dist/
+<<<<<<< HEAD
 /Janken1/build/
 /stg/nbproject/private/
+=======
+/Janken1/build/
+>>>>>>> 2bf0d76cab3ca0fea3b66253edce2d6d1327b39e
+>>>>>>> 0deda6a0bc86b6574656e4def9f5b906d18b78ce
