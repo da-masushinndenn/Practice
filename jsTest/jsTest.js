@@ -1,86 +1,49 @@
-window.onload = time;
-
-function time(){
-	dd = new Date();
-	document.F1.T1.value = dd.toLocaleTimeString();
-	setTimeout(time, 1000);
+var timerID;
+//ゲーム開始関数（アンカークリックで呼ばれる）
+function gameStart(){
+	alert("OK押したら３秒待ってね");
+	timerID = setTimeout("gameBody()", 3000);
 }
 
-function al(){
-	alert("Hello world!!");
+//ゲーム初期化関数
+function gameInit(){
+	alert("ゲーム初期化");
 }
 
-function br(){
-	var b = navigator.appName;
-	var v = navigator.appVersion;
-	alert(b);
-	alert(v);
-}
-function ov(){
-	alert('マウスオーバー！');
-}
-
-function jj(){
-	var k = document.getElementById('jj');
-	k.innerHTML = "<b>３の２乗は" + j(3) + "です</b><br>";
+//ゲームの本体の関数（メインループ）
+function gameBody(){
+	var f;
+	clearTimeout(timerID);
+	f = confirm("３秒経ちました！続けますか？");
+	if(f){
+		timerID = setTimeout("gameBody()", 3000);
+	}
+	
 }
 
-function j(a){
-	return a * a;
+//レイヤー表示・非表示
+function lyrSetVisibility(lyr, visf){
+	if(visf){
+		document.getElementById(lyr).style.visibility = "visible";
+	}else{
+		document.getElementById(lyr).style.visibility = "hidden";
+	}
 }
 
-function m(){
-	var l = menseki(10, 20);
-	var x = document.getElementById('menseki');
-	x.innerHTML = "<b>" + l + "</b>";
+//レイヤーの位置指定
+function lyrSetPos(lyr, x, y){
+	document.getElementById(lyr).style.left = x + 'px';
+	document.getElementById(lyr).style.top  = y + 'px';
 }
 
-function menseki(w, h){
-	return "面積は" + w * h + "です。";
+//レイヤーの座標取得
+//左
+function lyrGetLeft(lyr){
+	return(parseInt(document.getElementById(lyr).style.left));
 }
-
-//曜日取得
-var today = new Date();
-var week = today.getDay();
-
-var yobi = [
-	"日曜日",
-	"月曜日",
-	"火曜日",
-	"水曜日",
-	"木曜日",
-	"金曜日",
-	"土曜日"
-];
-
-function tw(){
-	var w = document.getElementById('week');
-	w.innerHTML = "今日は" + yobi[week] + "です";
+//上
+function lyrGetTop(lyr){
+	return(parseInt(document.getElementById(lyr).style.top));
 }
 
 
-//function tw(){
-//	var w = document.getElementById('week');
-//	switch(week){
-//		case 0:
-//			w.innerHTML = "今日は日曜日です";
-//			break;
-//		case 1:
-//			w.innerHTML = "今日は月曜日です";
-//			break;
-//		case 2:
-//			w.innerHTML = "今日は火曜日です";
-//			break;
-//		case 3:
-//			w.innerHTML = "今日は水曜日です";
-//			break;
-//		case 4:
-//			w.innerHTML = "今日は木曜日です";
-//			break;
-//		case 5:
-//			w.innerHTML = "今日は金曜日です";
-//			break;
-//		default:
-//			w.innerHTML = "今日は土曜日です";
-//	}
-//}
