@@ -1,4 +1,16 @@
 var timerID;
+
+//マウス座標変数
+var mousex;
+var mousey;
+
+//マウス座標変数
+function evMouseMove(e){
+	mousex = e.pageX;
+	mousey = e.pageY;
+}
+
+
 //ゲーム開始関数（アンカークリックで呼ばれる）
 function gameStart(){
 	alert("OK押したら３秒待ってね");
@@ -17,8 +29,7 @@ function gameBody(){
 	f = confirm("３秒経ちました！続けますか？");
 	if(f){
 		timerID = setTimeout("gameBody()", 3000);
-	}
-	
+	}	
 }
 
 //レイヤー表示・非表示
