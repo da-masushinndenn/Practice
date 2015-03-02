@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="jsTest.css" type="text/css">
+		<script type="text/javascript" src="2.js"></script>
+		<title>フォーム入力のチェック</title>
+	</head>
+
+	<body>
+		<form name="frml" action="hogehoge.html">
+			<fieldset>
+				<legend>名前</legend>
+				<label>姓
+					<input type="text" name="lastname">
+				</label>
+				<label>名
+					<input type="text" name="firstname">
+				</label>
+			</fieldset>
+			<fieldset>
+				<legend>性別</legend>
+				<label>
+					<input type="radio" name="gender" value="m">男
+				</label>
+				<label>
+					<input type="radio" name="gender" value="f">女
+				</label>
+			</fieldset>
+			<input type="button" onclick="check();" value="送信">
+		</form>
+	</body>
+
+</html>
